@@ -118,6 +118,78 @@
               }
             }
           </script>
+
+          <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+<!-- AOS CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+          <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<!-- AOS JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<!-- Initialize AOS -->
+<script>
+  AOS.init();
+</script>
+
+          <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const swiperConfigElement = document.querySelector(".swiper-config");
+    if (swiperConfigElement) {
+      const options = JSON.parse(swiperConfigElement.textContent);
+      new Swiper(".init-swiper", options);
+    }
+  });
+</script>
+
+          <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    new Swiper('.init-swiper', {
+      loop: true,
+      speed: 600,
+      autoplay: {
+        delay: 5000
+      },
+      slidesPerView: 'auto',
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 40
+        },
+        480: {
+          slidesPerView: 3,
+          spaceBetween: 60
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 80
+        },
+        992: {
+          slidesPerView: 5,
+          spaceBetween: 120
+        },
+        1200: {
+          slidesPerView: 6,
+          spaceBetween: 120
+        }
+      }
+    });
+  });
+</script>
+
+
+          <div class="swiper-pagination"></div>
+
+          
           <div class="swiper-wrapper align-items-center">
             <div class="swiper-slide"><img src="assets/img/clients/clients-1.png" class="img-fluid" alt=""></div>
             <div class="swiper-slide"><img src="assets/img/clients/clients-2.png" class="img-fluid" alt=""></div>
