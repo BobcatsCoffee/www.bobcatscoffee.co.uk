@@ -289,28 +289,14 @@
 
 <!-- Testimonials Section -->
 <section id="testimonials" class="testimonials section">
+  <!-- Section Title -->
   <div class="container section-title" data-aos="fade-up">
     <h2>Customer Reviews</h2>
     <p>What Our Customers Are Saying...</p>
   </div><!-- End Section Title -->
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div class="swiper init-swiper">
-      <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-            "delay": 5000
-          },
-          "slidesPerView": 1,
-          "pagination": {
-            "el": ".swiper-pagination",
-            "type": "bullets",
-            "clickable": true
-          }
-        }
-      </script>
+    <div class="swiper-container">
       <div class="swiper-wrapper">
         <!-- Testimonial 1 -->
         <div class="swiper-slide">
@@ -360,37 +346,8 @@
           </div>
         </div><!-- End testimonial item -->
 
-        <!-- Testimonial 4 -->
-        <div class="swiper-slide">
-          <div class="testimonial-item">
-            <h3>Simon W</h3>
-            <h4>Trip Advisor</h4>
-            <div class="stars">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-            </div>
-            <p>
-              <i class="bi bi-quote quote-icon-left"></i>
-              <span>Their Americano is awesome, actually one of the best that I have tasted locally for a very long time. The owner Bobby knows a lot about creating a great brew and we chatted about grinds, roasts and coffee type things for a while. Having helped my brother set up his cafe in Betws y Coed a while back, I’ve lived and breathed coffee. Bobcats is a very friendly place and a great asset to Colwyn Bay too. They deserve every success.</span>
-              <i class="bi bi-quote quote-icon-right"></i>
-            </p>
-          </div>
-        </div><!-- End testimonial item -->
+        <!-- Add more testimonials here -->
 
-        <!-- Testimonial 5 -->
-        <div class="swiper-slide">
-          <div class="testimonial-item">
-            <h3>Grace W</h3>
-            <h4>Trip Advisor</h4>
-            <div class="stars">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-            </div>
-            <p>
-              <i class="bi bi-quote quote-icon-left"></i>
-              <span>Really friendly staff—great use of a long empty space with a lovely warm atmosphere. Big cups of coffee and the food is freshly made to order!</span>
-              <i class="bi bi-quote quote-icon-right"></i>
-            </p>
-          </div>
-        </div><!-- End testimonial item -->
       </div>
 
       <!-- Pagination -->
@@ -399,14 +356,25 @@
   </div>
 </section><!-- End Testimonials Section -->
 
-<!-- Swiper JS Initialization -->
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+<!-- Initialize Swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const swiperConfigElement = document.querySelector(".swiper-config");
-    if (swiperConfigElement) {
-      const options = JSON.parse(swiperConfigElement.textContent);
-      new Swiper(".init-swiper", options);
+  // Initialize Swiper
+  const swiper = new Swiper('.swiper-container', {
+    loop: true,
+    speed: 600,
+    autoplay: {
+      delay: 5000
+    },
+    slidesPerView: 1,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
     }
   });
 </script>
