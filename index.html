@@ -248,7 +248,90 @@
     </section>
     <!-- /Opening Times Section -->
 
+<style>
+    body {
+      font-family: 'DynaPuff', cursive; /* Applying DynaPuff font */
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      color: #444444; /* Updated text color */
+    }
 
+    section#food-hygiene {
+      padding: 40px 20px;
+      background-color: #ffffff;
+      border-top: 1px solid #eee;
+    }
+
+    section#food-hygiene h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #c37847; /* Updated title color */
+    }
+
+    .hygiene-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
+
+    .hygiene-text {
+      flex: 1 1 400px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .hygiene-img {
+      flex: 1 1 300px;
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .hygiene-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hygiene-text {
+        padding: 0 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="food-hygiene">
+    <div class="container">
+      <h2>Bobcats Food Hygiene Rating</h2>
+      <div class="hygiene-content">
+        <div class="hygiene-text">
+          <p>
+            At Bobcats Coffee, we're proud to uphold the highest standards of food safety and cleanliness. 
+            We've been awarded a <strong>5 out of 5 Food Hygiene Rating</strong> by the Food Standards Agency — 
+            your guarantee of a clean, safe, and well-managed food environment.
+          </p>
+        </div>
+        <img 
+          src="https://www.food.gov.uk/sites/default/files/styles/promo_large/public/media/image/food-hygiene-Rating%205_a_preview.jpeg?itok=ao2_ogm4" 
+          alt="Food Hygiene Rating 5" 
+          class="hygiene-img">
+      </div>
+    </div>
+  </section>
+
+
+
+    
     <!-- Work Process Section -->
     <section id="about" class="work-process section">
 
