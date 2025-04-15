@@ -262,76 +262,83 @@
 
   <style>
     body {
-      font-family: 'DynaPuff', cursive; /* Applying DynaPuff font */
-      margin: 0;
-      padding: 0;
-      background-color: #fafafa;
-      color: #444444; /* Updated text color */
-    }
+  font-family: 'DynaPuff', cursive; /* Applying DynaPuff font */
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  color: #444444; /* Updated text color */
+}
 
-    section#food-hygiene {
-      padding: 40px 20px;
-      background-color: #ffffff;
-      border-top: 1px solid #eee;
-      opacity: 0; /* Start as invisible */
-      transform: translateY(20px); /* Start slightly below */
-      animation: fadeUp 1s ease-out forwards; /* Apply the animation */
-    }
+section#food-hygiene {
+  padding: 40px 20px;
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+  opacity: 0; /* Start as invisible */
+  transform: translateY(20px); /* Start slightly below */
+  animation: fadeUp 1s ease-out forwards; /* Apply the animation */
+}
 
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    section#food-hygiene h2 {
-      font-size: 1.8rem;
-      margin-bottom: 30px;
-      text-align: center;
-      color: #c37847; /* Updated title color */
-    }
+section#food-hygiene h2 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #c37847; /* Updated title color */
+}
 
-    .hygiene-content {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-      flex-wrap: wrap;
-    }
+.hygiene-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
 
-    .hygiene-text {
-      flex: 1 1 400px;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
+.hygiene-text {
+  flex: 1 1 400px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 10px; /* Reduce bottom margin to tighten the layout */
+}
 
-    .hygiene-img {
-      flex: 1 1 300px;
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+.hygiene-img {
+  flex: 1 1 300px;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-    @media (max-width: 768px) {
-      .hygiene-content {
-        flex-direction: column;
-        text-align: center;
-      }
+@media (max-width: 768px) {
+  .hygiene-content {
+    flex-direction: column;
+    text-align: center;
+  }
 
-      .hygiene-text {
-        padding: 0 10px;
-      }
-    }
+  .hygiene-text {
+    padding: 0 10px;
+    margin-bottom: 15px; /* Adjust bottom margin for mobile */
+  }
+
+  .hygiene-img {
+    max-width: 250px; /* Slightly smaller image size for mobile */
+    margin-bottom: 20px; /* Reduce gap on mobile between text and image */
+  }
+}
   </style>
 </head>
 <body>
