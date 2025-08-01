@@ -106,7 +106,6 @@
       user-select: none;
     }
     input[type="text"],
-    input[type="number"],
     select,
     textarea {
       padding: 0.75rem;
@@ -162,8 +161,8 @@
       flex: 2 1 60%;
       min-width: 200px;
     }
-    .item-row input[type="number"],
-    .syrup-row input[type="number"] {
+    .item-row input[type="text"],
+    .syrup-row input[type="text"] {
       flex: 1 1 20%;
       min-width: 80px;
     }
@@ -195,8 +194,8 @@
       }
       .item-row select,
       .syrup-row select,
-      .item-row input[type="number"],
-      .syrup-row input[type="number"],
+      .item-row input[type="text"],
+      .syrup-row input[type="text"],
       .item-row button.remove-item-btn,
       .syrup-row button.remove-syrup-btn {
         flex: 1 1 100%;
@@ -318,13 +317,20 @@
       select.innerHTML = productOptions;
 
       const qtyInput = document.createElement('input');
-      qtyInput.type = 'number';
+      qtyInput.type = 'text';              // changed to text
       qtyInput.name = 'itemQuantity[]';
-      qtyInput.min = '1';
       qtyInput.placeholder = 'Quantity';
       qtyInput.required = true;
-      qtyInput.inputMode = 'numeric';  // restrict to numeric input on mobile
-      qtyInput.pattern = '[0-9]*';     // accept only digits
+      qtyInput.inputMode = 'numeric';
+      qtyInput.pattern = '[0-9]*';
+
+      qtyInput.addEventListener('keydown', function(e) {
+        const allowedKeys = ['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'];
+        if (allowedKeys.includes(e.key)) return;
+        if (!e.key.match(/[0-9]/)) {
+          e.preventDefault();
+        }
+      });
 
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
@@ -350,13 +356,20 @@
       select.innerHTML = syrupOptions;
 
       const qtyInput = document.createElement('input');
-      qtyInput.type = 'number';
+      qtyInput.type = 'text';            // changed to text
       qtyInput.name = 'syrupQuantity[]';
-      qtyInput.min = '1';
       qtyInput.placeholder = 'Quantity';
       qtyInput.required = true;
-      qtyInput.inputMode = 'numeric';  // restrict to numeric input on mobile
-      qtyInput.pattern = '[0-9]*';     // accept only digits
+      qtyInput.inputMode = 'numeric';
+      qtyInput.pattern = '[0-9]*';
+
+      qtyInput.addEventListener('keydown', function(e) {
+        const allowedKeys = ['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'];
+        if (allowedKeys.includes(e.key)) return;
+        if (!e.key.match(/[0-9]/)) {
+          e.preventDefault();
+        }
+      });
 
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
@@ -385,7 +398,6 @@
       if (entered === correctPassword) {
         document.getElementById("password-screen").style.display = "none";
         document.getElementById("order-form").style.display = "block";
-        // Add one initial item and syrup row on load
         if (itemsContainer.children.length === 0) addItemRow();
         if (syrupsContainer.children.length === 0) addSyrupRow();
       } else {
@@ -421,7 +433,7 @@
           alert('Please select an item for each item row.');
           return false;
         }
-        if (!itemQtys[i].value || itemQtys[i].value < 1 || !/^\d+$/.test(itemQtys[i].value)) {
+        if (!itemQtys[i].value || !itemQtys[i].value.match(/^\d+$/) || parseInt(itemQtys[i].value, 10) < 1) {
           alert('Please enter a valid quantity (numbers only, 1 or more) for each item.');
           return false;
         }
@@ -434,7 +446,7 @@
           alert('Please select a syrup for each syrup row.');
           return false;
         }
-        if (!syrupQtys[i].value || syrupQtys[i].value < 1 || !/^\d+$/.test(syrupQtys[i].value)) {
+        if (!syrupQtys[i].value || !syrupQtys[i].value.match(/^\d+$/) || parseInt(syrupQtys[i].value, 10) < 1) {
           alert('Please enter a valid quantity (numbers only, 1 or more) for each syrup.');
           return false;
         }
