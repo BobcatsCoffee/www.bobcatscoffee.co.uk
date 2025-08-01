@@ -390,19 +390,20 @@
     }
 
     function prepareFormForSubmit(event) {
-      event.preventDefault();
       const form = event.target;
 
       // Validate Staff Name
       const staffName = form.staffName.value.trim();
       if (!staffName) {
         alert('Please enter your name.');
+        event.preventDefault();
         return false;
       }
       // Validate Location
       const location = form.location.value;
       if (!location) {
         alert('Please select your location.');
+        event.preventDefault();
         return false;
       }
       // Validate items
@@ -410,15 +411,18 @@
       const itemQtys = form.querySelectorAll('input[name="itemQuantity[]"]');
       if (itemNames.length === 0) {
         alert('Please add at least one item.');
+        event.preventDefault();
         return false;
       }
       for(let i=0; i<itemNames.length; i++) {
         if (!itemNames[i].value) {
           alert('Please select an item for each item row.');
+          event.preventDefault();
           return false;
         }
         if (!itemQtys[i].value || itemQtys[i].value < 1) {
           alert('Please enter a valid quantity (1 or more) for each item.');
+          event.preventDefault();
           return false;
         }
       }
@@ -428,14 +432,16 @@
       for(let i=0; i<syrupNames.length; i++) {
         if (!syrupNames[i].value) {
           alert('Please select a syrup for each syrup row.');
+          event.preventDefault();
           return false;
         }
         if (!syrupQtys[i].value || syrupQtys[i].value < 1) {
           alert('Please enter a valid quantity (1 or more) for each syrup.');
+          event.preventDefault();
           return false;
         }
       }
-      form.submit();
+      // Validation passed, allow form to submit normally and redirect to _next page
       return true;
     }
   </script>
