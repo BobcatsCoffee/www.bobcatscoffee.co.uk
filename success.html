@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Submitted</title>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet" />
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'DynaPuff', cursive;
+      position: relative;
+      overflow: hidden;
+    }
+    body {
+      background-image: url('https://www.bobcatscoffee.co.uk/assets/img/hero-img.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(195, 120, 71, 0.7);
+      z-index: 0;
+    }
+    .success-box {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      max-width: 450px;
+      margin: auto;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+      color: #c37847;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    a.button {
+      font-family: 'DynaPuff', cursive;
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background-color: #c37847;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.25rem;
+      transition: background-color 0.3s ease;
+    }
+    a.button:hover {
+      background-color: #a96034;
+    }
+  </style>
+  <script>
+    // Disable back button on this success page
+    history.pushState(null, '', location.href);
+    window.addEventListener('popstate', function (event) {
+      history.pushState(null, '', location.href);
+    });
+  </script>
+</head>
+<body>
+  <div class="success-box" role="main" aria-live="polite">
+    <h1>Order Submitted</h1>
+    <p>Thanks! Your staff order has been sent successfully.</p>
+    <a href="https://www.bobcatscoffee.co.uk/" class="button">Back to Home</a>
+  </div>
+</body>
+</html>
