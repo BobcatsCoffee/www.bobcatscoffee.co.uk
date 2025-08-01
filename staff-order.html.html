@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bobcats Coffee | Internal Order Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'DynaPuff', cursive;
+      background-color: rgba(195, 120, 71, 0.25);
+      color: #000;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    * {
+      font-family: 'DynaPuff', cursive;
+    }
+    .password-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-image: url('https://www.bobcatscoffee.co.uk/assets/img/hero-img.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      background-blend-mode: overlay;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .password-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      border: 1px solid #ccc;
+      color: #c37847;
+    }
+    .password-box h2 {
+      margin: 0 0 1rem;
+      color: #c37847;
+      font-size: 1.8rem;
+    }
+    .password-box input[type="password"] {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      box-sizing: border-box;
+      margin-top: 1rem;
+    }
+    .password-box button {
+      margin-top: 1rem;
+      background-color: #c37847;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .password-box button:hover {
+      background-color: #a96034;
+    }
+    .container {
+      max-width: 700px;
+      margin: 4rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.97);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 2rem auto;
+      max-width: 140px;
+      height: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #c37847;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+      color: #222;
+      user-select: none;
+    }
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    button[type="submit"],
+    button.add-item-btn,
+    button.add-syrup-btn {
+      background-color: #c37847;
+      color: white;
+      border: none;
+      padding: 0.9rem 1.2rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'DynaPuff', cursive;
+      align-self: flex-start;
+      margin-top: 0.5rem;
+    }
+    button[type="submit"]:hover,
+    button.add-item-btn:hover,
+    button.add-syrup-btn:hover {
+      background-color: #a96034;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      color: #666;
+      user-select: none;
+    }
+    /* Items and Syrups container */
+    #items-container,
+    #syrups-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .item-row,
+    .syrup-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .item-row select,
+    .syrup-row select {
+      flex: 2 1 60%;
+      min-width: 200px;
+    }
+    .item-row input[type="number"],
+    .syrup-row input[type="number"] {
+      flex: 1 1 20%;
+      min-width: 80px;
+    }
+    .item-row button.remove-item-btn,
+    .syrup-row button.remove-syrup-btn {
+      background-color: #e04e00;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex: 0 0 auto;
+      transition: background-color 0.3s ease;
+    }
+    .item-row button.remove-item-btn:hover,
+    .syrup-row button.remove-syrup-btn:hover {
+      background-color: #b63a00;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 2rem 1rem;
+        padding: 1rem;
+      }
+      .item-row,
+      .syrup-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .item-row select,
+      .syrup-row select,
+      .item-row input[type="number"],
+      .syrup-row input[type="number"],
+      .item-row button.remove-item-btn,
+      .syrup-row button.remove-syrup-btn {
+        flex: 1 1 100%;
+        min-width: auto;
+      }
+      button.add-item-btn,
+      button.add-syrup-btn {
+        align-self: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="password-screen" id="password-screen" role="dialog" aria-modal="true" aria-labelledby="passwordHeading">
+    <div class="password-box">
+      <h2 id="passwordHeading">Staff Access Only</h2>
+      <p>Please enter the access password:</p>
+      <input type="password" id="password" aria-label="Access password" placeholder="Enter password..." />
+      <button type="button" onclick="checkPassword()">Enter</button>
+    </div>
+  </div>
+
+  <main class="container" id="order-form" style="display: none;" role="main">
+    <h1>Internal Order Form</h1>
+    <form id="orderForm" action="https://formsubmit.co/bobcatscoffee1@gmail.com" method="POST" target="_blank" novalidate onsubmit="return prepareFormForSubmit(event)">
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_next" value="https://www.bobcatscoffee.co.uk" />
+      <input type="hidden" name="_captcha" value="false" />
+      
+      <label for="staffName">Staff Member Name:</label>
+      <input type="text" id="staffName" name="staffName" required autocomplete="name" />
+
+      <label for="location">Select Location:</label>
+      <select id="location" name="location" required>
+        <option value="" disabled selected>Select your location</option>
+        <option value="Colwyn Bay">Colwyn Bay</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Items Requested:</label>
+      <div id="items-container"></div>
+      <button type="button" class="add-item-btn" onclick="addItemRow()">+ Add Another Item</button>
+
+      <label>Syrups Requested:</label>
+      <div id="syrups-container"></div>
+      <button type="button" class="add-syrup-btn" onclick="addSyrupRow()">+ Add Another Syrup</button>
+
+      <label for="notes">Additional Notes:</label>
+      <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions or comments..."></textarea>
+
+      <button type="submit">Submit Order</button>
+    </form>
+    <footer>&copy; 2025 Bobcats Coffee Ltd. Internal Use Only.</footer>
+  </main>
+
+  <script>
+    const correctPassword = "bobcats2025";
+    const itemsContainer = document.getElementById('items-container');
+    const syrupsContainer = document.getElementById('syrups-container');
+
+    const productOptions = `
+      <option value="" disabled selected>Select an item</option>
+      <option value="Coffee Beans - Buddy Blend 1KG">Coffee Beans - Buddy Blend 1KG</option>
+      <option value="Coffee Beans - Swiss Water Decaf 1KG">Coffee Beans - Swiss Water Decaf 1KG</option>
+      <option value="Coffee Beans - Guest Blend 1KG">Coffee Beans - Guest Blend 1KG</option>
+      <option value="Coffee Beans - Buddy Blend 250g">Coffee Beans - Buddy Blend 250g</option>
+      <option value="Coffee Beans - Swiss Water Decaf 250g">Coffee Beans - Swiss Water Decaf 250g</option>
+      <option value="Coffee Beans - Guest Blend 250g">Coffee Beans - Guest Blend 250g</option>
+      <option value="Paper Cups 8oz (Flatwhite)">Paper Cups 8oz (Flatwhite)</option>
+      <option value="Paper Cups 10oz (Latte)">Paper Cups 10oz (Latte)</option>
+      <option value="Paper Cups 4oz (Pupcup)">Paper Cups 4oz (Pupcup)</option>
+      <option value="Iced Cups 12oz (Iced Drinks)">Iced Cups 12oz (Iced Drinks)</option>
+      <option value="8oz Lids (FlatWhite)">8oz Lids (FlatWhite)</option>
+      <option value="10oz Lids (Latte)">10oz Lids (Latte)</option>
+      <option value="12oz Lids (Iced Drinks)">12oz Lids (Iced Drinks)</option>
+      <option value="Paper Straws">Paper Straws</option>
+      <option value="Regular Tea">Regular Tea</option>
+      <option value="Specility Tea (Write In Notes)">Specility Tea (Write In Notes)</option>
+      <option value="Marshmellow 1KG">Marshmellow 1KG</option>
+      <option value="Hot Chocolate 2kg Per Tub - (Pack Of 6)">Hot Chocolate 2kg Per Tub - (Pack Of 6)</option>
+      <option value="Alternitive Milks - Oat">Alternitive Milks - Oat</option>
+      <option value="Alternitive Milks - Soya">Alternitive Milks - Soya</option>
+      <option value="Alternitive Milks - Almond">Alternitive Milks - Almond</option>
+      <option value="Alternitive Milks - Coconut">Alternitive Milks - Coconut</option>
+      <option value="White Sugar Box">White Sugar Box</option>
+      <option value="Brown Sugar Box">Brown Sugar Box</option>
+      <option value="Cakes / TrayBakes">Cakes / TrayBakes</option>
+      <option value="Ice">Ice</option>
+      <option value="Whole Milk - (Packs Of 4)">Whole Milk</option>
+    `;
+
+    const syrupOptions = `
+      <option value="" disabled selected>Select a syrup</option>
+      <option value="Gingerbread 1L">Gingerbread 1L</option>
+      <option value="Cinnamon 1L">Cinnamon 1L</option>
+      <option value="Chocolate 1L">Chocolate 1L</option>
+      <option value="Hazelnut 1L">Hazelnut 1L</option>
+      <option value="Vanilla 1L">Vanilla 1L</option>
+      <option value="Caramel 1L">Caramel 1L</option>
+      <option value="Spiced Chai 1L">Spiced Chai 1L</option>
+      <option value="English Toffee 1L">English Toffee 1L</option>
+      <option value="Pistachio 1L">Pistachio 1L</option>
+      <option value="Blueberry 1L">Blueberry 1L</option>
+      <option value="Strawberry 1L">Strawberry 1L</option>
+      <option value="Cherry 1L">Cherry 1L</option>
+      <option value="Peach 1L">Peach 1L</option>
+      <option value="Mint 1L">Mint 1L</option>
+      <option value="Pumkin Spice 1L">Pumkin Spice 1L</option>
+      <option value="Banana 1L">Banana 1L</option>
+    `;
+
+    function createItemRow() {
+      const row = document.createElement('div');
+      row.className = 'item-row';
+
+      const select = document.createElement('select');
+      select.name = 'itemName[]';
+      select.required = true;
+      select.innerHTML = productOptions;
+
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'number';
+      qtyInput.name = 'itemQuantity[]';
+      qtyInput.min = '1';
+      qtyInput.placeholder = 'Quantity';
+      qtyInput.required = true;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'remove-item-btn';
+      removeBtn.textContent = 'Remove';
+      removeBtn.title = 'Remove this item';
+      removeBtn.onclick = () => row.remove();
+
+      row.appendChild(select);
+      row.appendChild(qtyInput);
+      row.appendChild(removeBtn);
+
+      return row;
+    }
+
+    function createSyrupRow() {
+      const row = document.createElement('div');
+      row.className = 'syrup-row';
+
+      const select = document.createElement('select');
+      select.name = 'syrupName[]';
+      select.required = true;
+      select.innerHTML = syrupOptions;
+
+      const qtyInput = document.createElement('input');
+      qtyInput.type = 'number';
+      qtyInput.name = 'syrupQuantity[]';
+      qtyInput.min = '1';
+      qtyInput.placeholder = 'Quantity';
+      qtyInput.required = true;
+
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'remove-syrup-btn';
+      removeBtn.textContent = 'Remove';
+      removeBtn.title = 'Remove this syrup';
+      removeBtn.onclick = () => row.remove();
+
+      row.appendChild(select);
+      row.appendChild(qtyInput);
+      row.appendChild(removeBtn);
+
+      return row;
+    }
+
+    function addItemRow() {
+      itemsContainer.appendChild(createItemRow());
+    }
+
+    function addSyrupRow() {
+      syrupsContainer.appendChild(createSyrupRow());
+    }
+
+    function checkPassword() {
+      const entered = document.getElementById("password").value.trim();
+      if (entered === correctPassword) {
+        document.getElementById("password-screen").style.display = "none";
+        document.getElementById("order-form").style.display = "block";
+        // Add one initial item and syrup row on load
+        if (itemsContainer.children.length === 0) addItemRow();
+        if (syrupsContainer.children.length === 0) addSyrupRow();
+      } else {
+        alert("Incorrect password. Please try again.");
+      }
+    }
+
+    function prepareFormForSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      // Validate Staff Name
+      const staffName = form.staffName.value.trim();
+      if (!staffName) {
+        alert('Please enter your name.');
+        return false;
+      }
+      // Validate Location
+      const location = form.location.value;
+      if (!location) {
+        alert('Please select your location.');
+        return false;
+      }
+      // Validate items
+      const itemNames = form.querySelectorAll('select[name="itemName[]"]');
+      const itemQtys = form.querySelectorAll('input[name="itemQuantity[]"]');
+      if (itemNames.length === 0) {
+        alert('Please add at least one item.');
+        return false;
+      }
+      for(let i=0; i<itemNames.length; i++) {
+        if (!itemNames[i].value) {
+          alert('Please select an item for each item row.');
+          return false;
+        }
+        if (!itemQtys[i].value || itemQtys[i].value < 1) {
+          alert('Please enter a valid quantity (1 or more) for each item.');
+          return false;
+        }
+      }
+      // Validate syrups (if any)
+      const syrupNames = form.querySelectorAll('select[name="syrupName[]"]');
+      const syrupQtys = form.querySelectorAll('input[name="syrupQuantity[]"]');
+      for(let i=0; i<syrupNames.length; i++) {
+        if (!syrupNames[i].value) {
+          alert('Please select a syrup for each syrup row.');
+          return false;
+        }
+        if (!syrupQtys[i].value || syrupQtys[i].value < 1) {
+          alert('Please enter a valid quantity (1 or more) for each syrup.');
+          return false;
+        }
+      }
+      form.submit();
+      return true;
+    }
+  </script>
+</body>
+</html>
