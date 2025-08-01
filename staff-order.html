@@ -318,7 +318,7 @@
       select.innerHTML = productOptions;
 
       const qtyInput = document.createElement('input');
-      qtyInput.type = 'text';              // changed to text
+      qtyInput.type = 'text';
       qtyInput.name = 'itemQuantity[]';
       qtyInput.placeholder = 'Quantity';
       qtyInput.required = true;
@@ -357,7 +357,7 @@
       select.innerHTML = syrupOptions;
 
       const qtyInput = document.createElement('input');
-      qtyInput.type = 'text';            // changed to text
+      qtyInput.type = 'text';
       qtyInput.name = 'syrupQuantity[]';
       qtyInput.placeholder = 'Quantity';
       qtyInput.required = true;
@@ -443,9 +443,10 @@
       const syrupNames = form.querySelectorAll('select[name="syrupName[]"]');
       const syrupQtys = form.querySelectorAll('input[name="syrupQuantity[]"]');
       for(let i=0; i<syrupNames.length; i++) {
-        if (!syrupNames[i].value) {
-          alert('Please select a syrup for each syrup row.');
-          return false;
+        const syrupValue = syrupNames[i].value;
+        // Skip validation if "No Syrups" selected or empty
+        if (syrupValue === "No Syrups" || syrupValue === "") {
+          continue;
         }
         if (!syrupQtys[i].value || !syrupQtys[i].value.match(/^\d+$/) || parseInt(syrupQtys[i].value, 10) < 1) {
           alert('Please enter a valid quantity (numbers only, 1 or more) for each syrup.');
